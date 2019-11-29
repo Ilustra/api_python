@@ -17,7 +17,8 @@ def interativoLinear(): # 2x² + 3x + 5 =
         if valor < precisaoConstante:
             return True
         else:
-            return False    
+            return False 
+# V4+ln(x)=0
     def CalcInteracao(x, precisao, interacao):
         k=0
         lista.insert(0, x)
@@ -39,7 +40,5 @@ def interativoLinear(): # 2x² + 3x + 5 =
         return math.sqrt(x) 
 
     return format(CalcInteracao(1, 0.01, 250))
-        
-    
 
 app.run(debug=True)
