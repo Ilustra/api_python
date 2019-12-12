@@ -34,3 +34,7 @@ class Funcao2Grau:
     def distanceFromOrigin(self):
         resultado = self.a + self.b + self.c
         return "resultado {}".format(resultado)
+
+
+
+        
