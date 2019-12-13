@@ -1,0 +1,56 @@
+
+<div class="Jumbutron">
+    <h1>Calculo Númerico</h1>
+
+    <div class="Jumbutron-filho">
+
+            <label> Vairavel Isolada
+                <input type="text" style="width: 80px" [(ngModel)]="metodo[0]" nome='0' name="0">
+            </label>
+
+          <div class="formMil">
+            <label> Chute
+                <input type="text" [(ngModel)]="metodo[1]" nome='1' name="1">
+            </label>
+                <label> Interações
+                <input type="text" [(ngModel)]="metodo[2]">
+            </label>
+               <label> Precisão 
+                <input type="text" [(ngModel)]="metodo[3]">
+            </label>
+              <button style="width: 100px; margin: 10px" (click)="onClick(metodo)" >Calcular</button>
+        </div>
+
+    </div>
+    <div class="expressoes" >
+            <label> 
+                <input type="text" [(ngModel)]="metodo[4]">
+            </label>
+            <label> 
+                <input type="text" [(ngModel)]="metodo[5]" *ngIf="metodo[4]">
+            </label>
+            <label> 
+                <input type="text" [(ngModel)]="metodo[6]" *ngIf="metodo[5]">
+            </label>
+            <label> 
+                <input type="text" [(ngModel)]="metodo[7]" *ngIf="metodo[6]">
+            </label>
+            <label> 
+                <input type="text" [(ngModel)]="metodo[8]" *ngIf="metodo[7]">
+            </label>
+            <label> 
+                <input type="text" [(ngModel)]="metodo[9]" *ngIf="metodo[8]">
+            </label>
+
+    </div>
+    <div *ngIf="message" class="messagem">
+        <div  id="esquerdo" >
+                <h3 *ngFor="let aux of message['0']">{{aux}}</h3>
+        </div>
+        <div  id="direito" >
+                <h3 *ngFor="let aux of message['1']">{{aux}}</h3>
+            </div>
+
+           
+    </div>
+</div>
