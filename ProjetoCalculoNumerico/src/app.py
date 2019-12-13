@@ -4,7 +4,7 @@ import math
 from flask import request
 import json
 from funcao2Grau import Funcao2Grau
-
+        #math_express calcula o x da funcção pesquisar
 app = Flask("wtf")
 
 @app.route("/interativo", methods=["GET", "POST"])
@@ -18,7 +18,7 @@ def interativoLinear(): # 2x² + 3x + 5 =
 
     def pontoMedio(xki, xk):#função calcula o ponto médio xk+1 - xk / xk
         return abs( (xki - xk) / xki   )
-        
+
 
     def error(precisaoConstante, xki, xk): #calcular error
         if pontoMedio(xki, xk) < precisaoConstante:
@@ -33,6 +33,7 @@ def interativoLinear(): # 2x² + 3x + 5 =
         aux_resultado = 0
         j = 0
         k = 1
+        print(dados)
         if len(dados) < 2:
             return chute
         else:
@@ -73,12 +74,13 @@ def interativoLinear(): # 2x² + 3x + 5 =
   
             return aux_resultado
                                              
-
+    def reqs():
+        print(request.json)
     def sTring():
         lista=[]
         listaPontoMedio=[]
         dados = request.json
-
+        listaJson=[]
         resultado = 0
         constante =0
         k=0
@@ -113,13 +115,11 @@ def interativoLinear(): # 2x² + 3x + 5 =
                         if  len(dados["{}".format(x)][1:]) < 2: 
                             xk = constante + E(xk)                    
                         else:
-                            if dados["{}".format(x)][0]=='-' and dados["{}".format(x)][1]=='e' :
-                                print('1: ={}'.format(dados["{}".format(x)][2:]))
-                                
-                                print('exprssão + - {}'.format(calExpressao(dados["{}".format(x)][2:], xk)        ))
-
+                            if dados["{}".format(x)][0]=='-' and dados["{}".format(x)][1]=='e' and len(dados["{}".format(x)][1:]) < 3  :
                                 xk = constante - E(calExpressao(dados["{}".format(x)][2:], xk))
-                                print('valor e E ={}'.format(E(calExpressao(dados["{}".format(x)][2:], xk))           ))
+                            elif '^' in dados["{}".format(x)]:
+                                xk = constante - E(   (xk **  calExpressao( dados["{}".format(x)][2:], xk) )    )
+                                print("xk")
 
                     elif 'x' in dados["{}".format(x)] and dados["{}".format(x)].isalnum(): # (x)
                         if dados['{}'.format(x)][0].isdigit():
@@ -132,8 +132,9 @@ def interativoLinear(): # 2x² + 3x + 5 =
 
             if (    k >=  float(   dados['2'], )   ) or error(float(dados['3']), lista[0], lista[1]) ==True:
                 break
-        lista.append(listaPontoMedio)    
-        return json.dumps(lista)
+        listaJson=(lista,listaPontoMedio)
+       # lista.append({"PontoMedio":listaPontoMedio})    
+        return json.dumps(listaJson)
 
                
             
